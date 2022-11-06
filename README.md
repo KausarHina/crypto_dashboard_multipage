@@ -58,28 +58,30 @@ Here are the three pages :
 
 
 ---
-
----
 ## Questions to Answer
+
+```python
 Which cryptocurrency coins would make the best investment in my portfolio?
 
 Has the price changed drastically or buy/sell criteria been met over the past few minutes?
+```
 
 ---
 ## Research Resources/Datasets
-
+```python
 coingecko API - for coin data
 
 StreamIt/Panel - for Dashboard
-
+```
 ---
 ## Project Tasks
+```python
  - Kausar - main dashboard page construction with graph of at least 10 coins
 
  - Melissa & Edith - development of the portfolio construction outline of functions
 
  - Jodi - API data analysis and notifications sent as email alerts 
-
+```
 ---
 
 ## Contributors
