@@ -36,7 +36,7 @@ Before running the application first install the dependencies in conda dev envir
 ---
 
 
-## Usage
+##  Usage
 
 To use the **crypto_dashboard_multipage** simply clone the repository and run the **main.py** with streamlit:
 
@@ -61,26 +61,26 @@ Here are the three pages :
 ## Questions to Answer
 
 ```python
-Which cryptocurrency coins would make the best investment in my portfolio?
+    Which cryptocurrency coins would make the best investment in my portfolio?
 
-Has the price changed drastically or buy/sell criteria been met over the past few minutes?
+    Has the price changed drastically or buy/sell criteria been met over the past few minutes?
 ```
 
 ---
 ## Research Resources/Datasets
 ```python
-coingecko API - for coin data
+    coingecko API - for coin data
 
-StreamIt/Panel - for Dashboard
+    streamlit - for Dashboard
 ```
 ---
 ## Project Tasks
 ```python
- - Kausar - main dashboard page construction with graph of at least 10 coins
+    Kausar - main dashboard page construction with graph of at least 10 coins
 
- - Melissa & Edith - development of the portfolio construction outline of functions
+    Melissa & Edith - development of the portfolio construction outline of functions
 
- - Jodi - API data analysis and notifications sent as email alerts 
+    Jodi - API data analysis and notifications sent as email alerts 
 ```
 ---
 
