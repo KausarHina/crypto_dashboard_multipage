@@ -10,6 +10,7 @@ import json
 import numpy as np
 from bokeh.plotting import figure
 from utils import show_code
+from Modules import data
 
 #################################################################
 #
@@ -123,16 +124,22 @@ def get_combined_coin_info(coin_id) :
 #################################################################
 def coin_price_plot():
    
+    top_ten_coins_df = data.get_top_ten_coins()
+    
+    #print(top_ten_coins_df)
     coins_list = ['bitcoin', 'ethereum']
+
     days_list = ['1d', '7d', '30d', '90d', '1y', 'All']
 
     coin_id = st.sidebar.selectbox('Coins: ', coins_list)
     days = st.sidebar.selectbox('Time Frame', days_list)
 
+
     combined_info_df = get_combined_coin_info(coin_id)
 
     st.table(combined_info_df)
     
+    print(f"coid id = {coin_id}")
     coin_df = get_market_chart(coin_id, days)
     title = f"Price chart for {coin_id} for past {days}"
     p = figure(
@@ -146,7 +153,8 @@ def coin_price_plot():
     p.line(x, y, legend_label='Price')
 
     st.bokeh_chart(p, use_container_width=True)
-st.set_page_config(page_title="Coins", page_icon="📈")
+
+st.set_page_config(page_title="CoinsInfo", page_icon="📈")
 st.markdown("# Coins Info")
 st.sidebar.header("Coins Info")
 st.write(
