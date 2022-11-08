@@ -10,14 +10,15 @@ import json
 import numpy as np
 from bokeh.plotting import figure
 from utils import show_code
-from Modules import data
+from Modules import data as data_utils
+from Modules import styles
 
 #################################################################
 #
 #
 #################################################################
-def get_market_chart(coid_id, days):
-        
+def get_market_chart(coin_name, days):
+    
     vs_currency='usd'
     
     if days == '1d' :
@@ -32,8 +33,13 @@ def get_market_chart(coid_id, days):
         num_of_days=365 
     else :   
         num_of_days='max'
-        
-    url = f"https://api.coingecko.com/api/v3/coins/{coid_id}/market_chart"
+
+    coin_id_df = data_utils.global_coins_ids_df[data_utils.global_coins_ids_df['name'] == coin_name] 
+    coin_id = coin_id_df['id'].values.astype(str)
+    coin_id_str = str(coin_id).replace('[', '').replace(']', '')
+    coin_id_str = str(coin_id_str).replace('\'', '').replace('\'', '')
+     
+    url = f"https://api.coingecko.com/api/v3/coins/{coin_id_str}/market_chart"
     payload={'vs_currency' : vs_currency, 'days' : num_of_days}
     
     response = requests.get(url, params=payload)
@@ -52,6 +58,7 @@ def get_market_chart(coid_id, days):
     }  
     
     df = pd.DataFrame(raw_data, columns=['timestamp','price']) 
+    df = df.reset_index()
     df = df.set_index('timestamp')
     
     return df
@@ -122,43 +129,69 @@ def get_combined_coin_info(coin_id) :
 #
 #
 #################################################################
+def round_value(input_value):
+    if input_value.values > 1:
+        a = float(round(input_value, 2))
+    else:
+        a = float(round(input_value, 8))
+    return a
+
 def coin_price_plot():
    
-    top_ten_coins_df = data.get_top_ten_coins()
-    
-    #print(top_ten_coins_df)
-    coins_list = ['bitcoin', 'ethereum']
+    top_ten_coins = data_utils.get_top_ten_coins()
 
+    top_ten_coins_list = top_ten_coins[top_ten_coins['MARKET CAP RANK'] <= 10 ]
+    top_10_coins_name_list = list(top_ten_coins_list['NAME'])
+
+    coins_list = top_10_coins_name_list
     days_list = ['1d', '7d', '30d', '90d', '1y', 'All']
 
     coin_id = st.sidebar.selectbox('Coins: ', coins_list)
     days = st.sidebar.selectbox('Time Frame', days_list)
 
+    col1_df = top_ten_coins[top_ten_coins['NAME'] == coin_id ]
+ 
+    coin_name = col1_df['NAME'].values.astype(str)
+    coin_name_str = str(coin_name).replace('[', '').replace(']', '')
+    coin_name_str = str(coin_name_str).replace('\'', '').replace('\'', '')
 
-    combined_info_df = get_combined_coin_info(coin_id)
+    title_str=f" ## {coin_name_str}"
+    st.write(title_str, unsafe_allow_html=True)
 
-    st.table(combined_info_df)
-    
-    print(f"coid id = {coin_id}")
-    coin_df = get_market_chart(coin_id, days)
-    title = f"Price chart for {coin_id} for past {days}"
+    col1, col2 = st.columns(2)
+    col1_name = 'PRICE CHANGE 1H'
+    col1_price = round_value(col1_df.PRICE)
+    col1_percent = f'{float(col1_df.VARIATION)}%'
+    col1.metric(col1_name, col1_price, col1_percent)
+
+    col2_name = "PRICE CHANGE 24H"
+    col2_price = round_value(col1_df['PRICE CHANGE 24H'])
+    val = col1_df['PRICE CHANGE PERCENTAGE 24H']
+    col2_percent = f'{float(val)}%'
+
+    col2.metric(col2_name, col2_price, col2_percent)
+
+    coin_df = get_market_chart(coin_name_str, days)
+
+    title = f"{coin_name_str} Price chart to USD for past {days}"
     p = figure(
         title=title,
         x_axis_label='Timestamp',
         y_axis_label='Price')
 
     x=coin_df.index
-    y=coin_df.price
+    y=coin_df['price']
 
     p.line(x, y, legend_label='Price')
 
     st.bokeh_chart(p, use_container_width=True)
+    
 
-st.set_page_config(page_title="CoinsInfo", page_icon="📈")
-st.markdown("# Coins Info")
-st.sidebar.header("Coins Info")
+st.set_page_config(page_title="CoinInfo", page_icon="📈", layout="wide")
+st.markdown("# Coin Info")
+st.sidebar.header("Coin Info")
 st.write(
-    """Crypto coins information and trend"""
+    """Crypto coin information and trend"""
 )
 
 coin_price_plot()

@@ -28,7 +28,7 @@ def style_table(df):
                 for cell in is_neg]
         
     cols = [
-        'VARIATION (%)',
+        'VARIATION',
         'PRICE CHANGE 24H',
         'PRICE CHANGE PERCENTAGE 24H',
         'MARKET CAP CHANGE 24H',
