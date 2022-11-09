@@ -12,11 +12,13 @@ from bokeh.plotting import figure
 from utils import show_code
 from Modules import data as data_utils
 from Modules import styles
+from bokeh.models import DatetimeTickFormatter
 
 #################################################################
 #
 #
 #################################################################
+@st.cache
 def get_market_chart(coin_name, days):
     
     vs_currency='usd'
@@ -178,6 +180,14 @@ def coin_price_plot():
         title=title,
         x_axis_label='Timestamp',
         y_axis_label='Price')
+
+    p.xaxis.formatter=DatetimeTickFormatter(
+        hours=["%d %B %Y"],
+        days=["%d %B %Y"],
+        months=["%d %B %Y"],
+        years=["%d %B %Y"],
+    )
+    p.xaxis.major_label_orientation = 45
 
     x=coin_df.index
     y=coin_df['price']
