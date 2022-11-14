@@ -18,6 +18,18 @@ def get_top_ten_coins():
     return global_top_10_coins_df 
 
 @st.cache
+def get_all_coins_from_json():
+
+    parent_path = pathlib.Path(__file__).parent.parent.resolve() 
+    data_path = os.path.join(parent_path, "data/coins_ids.json")
+
+    data_df = pd.read_json(data_path)
+    global global_coins_ids_df 
+    global_coins_ids_df = data_df
+
+    return  
+
+@st.cache
 def get_all_coins():
     url = "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
     response = rq.get(url)
