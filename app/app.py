@@ -32,6 +32,7 @@ def run():
     table.write(coins_df.to_html(), unsafe_allow_html=True)   
 
     utils.get_all_coins_from_json() 
+
     
 
 if __name__ == "__main__":
