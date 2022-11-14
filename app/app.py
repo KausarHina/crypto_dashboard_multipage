@@ -31,7 +31,9 @@ def run():
     table = st.empty()
     table.write(coins_df.to_html(), unsafe_allow_html=True)   
 
-    utils.get_all_coins() 
+    #utils.get_all_coins() 
+
+
     
 
 if __name__ == "__main__":

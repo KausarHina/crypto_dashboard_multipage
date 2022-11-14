@@ -15,11 +15,6 @@
         "name": "0.5X Long Altcoin Index"
     },
     {
-        "id": "0-5x-long-ascendex-token-token",
-        "symbol": "asdhalf",
-        "name": "0.5X Long AscendEx"
-    },
-    {
         "id": "0-5x-long-bitcoin-token",
         "symbol": "half",
         "name": "0.5X Long Bitcoin"
@@ -3810,11 +3805,6 @@
         "name": "Anons Network"
     },
     {
-        "id": "anonverse",
-        "symbol": "anon",
-        "name": "Anonverse"
-    },
-    {
         "id": "anonydoxx",
         "symbol": "adxx",
         "name": "AnonyDoxx"
@@ -4665,6 +4655,11 @@
         "name": "Army Node Finance"
     },
     {
+        "id": "arnoya-classic",
+        "symbol": "arnc",
+        "name": "Arnoya classic"
+    },
+    {
         "id": "around-network-2",
         "symbol": "art",
         "name": "Around Network"
@@ -4863,6 +4858,11 @@
         "id": "aryacoin",
         "symbol": "aya",
         "name": "Aryacoin"
+    },
+    {
+        "id": "asan-verse",
+        "symbol": "asan",
+        "name": "ASAN VERSE"
     },
     {
         "id": "ascension",
@@ -5833,11 +5833,6 @@
         "id": "azuray",
         "symbol": "azy",
         "name": "Azuray"
-    },
-    {
-        "id": "azus",
-        "symbol": "azu",
-        "name": "Azus"
     },
     {
         "id": "az-world-socialfi",
@@ -10280,6 +10275,11 @@
         "name": "BSCBAY"
     },
     {
+        "id": "bscbets",
+        "symbol": "bets",
+        "name": "BSCBETS"
+    },
+    {
         "id": "bscbond",
         "symbol": "bscb",
         "name": "BscBond"
@@ -11873,6 +11873,11 @@
         "id": "chain-2",
         "symbol": "xcn",
         "name": "Chain"
+    },
+    {
+        "id": "chain4energy",
+        "symbol": "c4e",
+        "name": "Chain4Energy"
     },
     {
         "id": "chainbing",
@@ -16757,7 +16762,7 @@
     {
         "id": "defi-franc-moneta",
         "symbol": "mon",
-        "name": "DeFi Franc Moneta"
+        "name": "Defi Franc Moneta"
     },
     {
         "id": "defi-gold",
@@ -19360,11 +19365,6 @@
         "name": "Durham Inu"
     },
     {
-        "id": "dusd-network",
-        "symbol": "dusd",
-        "name": "DUSD Network"
-    },
-    {
         "id": "dusk-network",
         "symbol": "dusk",
         "name": "DUSK Network"
@@ -19490,6 +19490,11 @@
         "name": "Dynex"
     },
     {
+        "id": "dynochain",
+        "symbol": "dnd",
+        "name": "DynoChain"
+    },
+    {
         "id": "dyor",
         "symbol": "dyor",
         "name": "DYOR"
@@ -19598,6 +19603,11 @@
         "id": "easymine",
         "symbol": "emt",
         "name": "easyMine"
+    },
+    {
+        "id": "eat-to-earn",
+        "symbol": "eater",
+        "name": "Eat to Earn"
     },
     {
         "id": "eautocoin",
@@ -22600,6 +22610,11 @@
         "name": "Filecoin Standard Full Hashrate"
     },
     {
+        "id": "fileshare-platform",
+        "symbol": "fsc",
+        "name": "Fileshare Platform"
+    },
+    {
         "id": "filestar",
         "symbol": "star",
         "name": "FileStar"
@@ -24292,7 +24307,7 @@
     {
         "id": "gala",
         "symbol": "gala",
-        "name": "Gala"
+        "name": "GALA"
     },
     {
         "id": "galactic-arena-the-nftverse",
@@ -24748,6 +24763,11 @@
         "id": "gas",
         "symbol": "gas",
         "name": "Gas"
+    },
+    {
+        "id": "gasblock",
+        "symbol": "gsbl",
+        "name": "GasBlock"
     },
     {
         "id": "gas-dao",
@@ -27390,11 +27410,6 @@
         "name": "Helicopter Finance"
     },
     {
-        "id": "helio",
-        "symbol": "hlo",
-        "name": "Helio"
-    },
-    {
         "id": "helio-protocol-hay",
         "symbol": "hay",
         "name": "Destablecoin HAY"
@@ -27807,7 +27822,7 @@
     {
         "id": "hippopotamus",
         "symbol": "hpo",
-        "name": "Hippopotamus"
+        "name": "Hippo Wallet"
     },
     {
         "id": "hippo-token",
@@ -31905,6 +31920,11 @@
         "name": "Kintsugi BTC"
     },
     {
+        "id": "kira",
+        "symbol": "kira",
+        "name": "KIRA"
+    },
+    {
         "id": "kiradoge-coin",
         "symbol": "kiradoge",
         "name": "Kiradoge"
@@ -32483,11 +32503,6 @@
         "id": "kronobit",
         "symbol": "knb",
         "name": "Kronobit"
-    },
-    {
-        "id": "kronosdao",
-        "symbol": "kronos",
-        "name": "KronosDao"
     },
     {
         "id": "krook-coin",
@@ -34058,6 +34073,11 @@
         "id": "litx",
         "symbol": "litx",
         "name": "Lith Token"
+    },
+    {
+        "id": "livegreen-coin",
+        "symbol": "lgc",
+        "name": "LiveGreen Coin"
     },
     {
         "id": "livenodes",
@@ -35740,11 +35760,6 @@
         "name": "Matrak Fan Token"
     },
     {
-        "id": "matrexcoin",
-        "symbol": "mac",
-        "name": "Matrexcoin"
-    },
-    {
         "id": "matrix-2",
         "symbol": "mtix",
         "name": "Matrix"
@@ -36698,11 +36713,6 @@
         "id": "metacelo",
         "symbol": "cmeta",
         "name": "MetaCelo"
-    },
-    {
-        "id": "metachess",
-        "symbol": "shah",
-        "name": "MetaChess"
     },
     {
         "id": "meta-cloth",
@@ -38847,7 +38857,7 @@
     {
         "id": "moneybyte",
         "symbol": "mon",
-        "name": "MoneyByte"
+        "name": "Moneybyte"
     },
     {
         "id": "moneydefiswap",
@@ -44790,11 +44800,6 @@
         "name": "PieDAO Yearn Ecosystem Pie"
     },
     {
-        "id": "pieme",
-        "symbol": "pie",
-        "name": "Pieme"
-    },
-    {
         "id": "pie-share",
         "symbol": "pie",
         "name": "Pie Share"
@@ -50610,6 +50615,11 @@
         "name": "Sashimi"
     },
     {
+        "id": "satelstar",
+        "symbol": "stsr",
+        "name": "SatelStar"
+    },
+    {
         "id": "satisfinance",
         "symbol": "sat",
         "name": "SatisFinance"
@@ -54985,9 +54995,19 @@
         "name": "Stamen Tellus Token"
     },
     {
+        "id": "standard-euro",
+        "symbol": "seuro",
+        "name": "Standard Euro"
+    },
+    {
         "id": "standard-protocol",
         "symbol": "stnd",
         "name": "Standard Protocol"
+    },
+    {
+        "id": "standard-token",
+        "symbol": "tst",
+        "name": "TheStandard.io"
     },
     {
         "id": "stand-cash",
@@ -55188,6 +55208,11 @@
         "id": "starworks-global-ecosystem",
         "symbol": "starx",
         "name": "STARX"
+    },
+    {
+        "id": "starz",
+        "symbol": "stz",
+        "name": "Starz"
     },
     {
         "id": "stasis-eurs",
@@ -56023,6 +56048,11 @@
         "id": "super-zero",
         "symbol": "sero",
         "name": "SERO"
+    },
+    {
+        "id": "supplycon",
+        "symbol": "splc",
+        "name": "SupplyCon"
     },
     {
         "id": "support-doge",
@@ -58748,11 +58778,6 @@
         "id": "tourist-token",
         "symbol": "toto",
         "name": "Tourist"
-    },
-    {
-        "id": "touriva",
-        "symbol": "tour",
-        "name": "Touriva"
     },
     {
         "id": "tower",
