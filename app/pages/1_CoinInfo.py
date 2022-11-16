@@ -9,7 +9,6 @@ import datetime
 import json
 import numpy as np
 from bokeh.plotting import figure
-from utils import show_code
 from Modules import data as data_utils
 from Modules import styles
 from bokeh.models import DatetimeTickFormatter
