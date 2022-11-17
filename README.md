@@ -1,9 +1,13 @@
 # crypto_dashboard_multipage
 
 
-This project will create a dashboard for cryptocurrency data. It is meant to be simple and straight-forward for users new to crypto.  
+This project creates a dashboard for cryptocurrency data. It is meant to be simple and straight-forward for users new to crypto. The data provided gives them basic information to help them evaluate coin performance and develop a starting point for evaluating buy/sell opportunities.
 
-Timely data on the top 10 coins is collected and displayed on the front page of the dashboard. The Portfolio page shows the results of monte carlo simulations to help users evaluate the best coins to include in their portfolio. There is also notifications that can be sent to user's emails when coins reach criteria for users to consider when buying and selling. 
+1. Timely data on the top 10 coins is collected and displayed on the front page of the dashboard. 
+2. The Coins page allows the user to choose a top-ten coin and a timeframe. With their parmaters choosen, numerical and graphical price trends are displayed. 
+3. The Indicators page follows the users interest further by allowing them again to choose a coin and see common trade indictor statistics, used to help evaluate the coin's past performance.  These statistics are followed with information expaining their significance to the new crypto enthusiast. 
+4. The XXX page, evaluates coin prices and trading fees across 5 different trading exchanges to find the best price for each coin. The user can elect to receive notifications via email to tell them the "best value" exchange for their top 3 prefered coins. 
+
 
 
 ## Technologies
@@ -38,23 +42,23 @@ Before running the application first install the dependencies in conda dev envir
 
 ##  Usage
 
-To use the **crypto_dashboard_multipage** simply clone the repository and run the **main.py** with streamlit:
+To use the **crypto_dashboard_multipage** simply clone the repository and run the **app.py** with streamlit:
 
 ```python
     conda activate dev
 
-    streamlit run main.py
+    streamlit run app/app.py
 
     conda deactivate 
 ```
 
-Here are the three pages :
+Here are the crypto information and trend:
 
-![Coins Page ](Images/Coins.png)
+![Crypto Dashboard Welcome ](Images/CryptoDashboard_multi.png)
 
-![Portfolio Page ](Images/Portfolio.png)
+![Bollinger Bands ](Images/bollingerBands.png)
 
-![Notification Page ](Images/Notification.png)
+![MACD ](Images/MACD.png)
 
 
 ---
@@ -78,7 +82,7 @@ Here are the three pages :
 ```python
     Kausar - main dashboard page construction with graph of at least 10 coins
 
-    Melissa & Edith - development of the portfolio construction outline of functions
+    Marissa & Edith - development of the portfolio construction outline of functions
 
     Jodi - API data analysis and notifications sent as email alerts 
 ```
@@ -99,4 +103,3 @@ Jodi Artman
 ## License
 
 MIT
-
