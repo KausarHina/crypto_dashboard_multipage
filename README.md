@@ -54,11 +54,11 @@ To use the **crypto_dashboard_multipage** simply clone the repository and run th
 
 Here are the crypto information and trend:
 
-![Crypto Dashboard Welcome ](app/Images/CryptoDashboard_multi.png)
+![Crypto Dashboard Welcome ](Images/CryptoDashboard_multi.png)
 
-![Bollinger Bands ](app/Images/bollingerBands.png)
+![Bollinger Bands ](Images/bollingerBands.png)
 
-![MACD ](app/Images/MACD.png)
+![MACD ](Images/MACD.png)
 
 
 ---
