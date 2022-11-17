@@ -83,28 +83,30 @@ def get_rsi_df(df, periods = 14, ema = True):
     
     return rsi
 
-def rsi_plot(prices, coin_rsi):
+def rsi_plot(prices, coin_rsi, coin_name):
     rsi_plot = plt.figure()
     #point the plot to rsi_plot
     ax1 = plt.subplot2grid((10,1), (0,0), rowspan = 4, colspan = 1, fig = rsi_plot)
     ax2 = plt.subplot2grid((10,1), (5,0), rowspan = 4, colspan = 1, fig = rsi_plot)
     
     ax1.plot(prices, linewidth = 2.5)
-    ax1.set_title('IBM CLOSE PRICE')
+    ax1_title_str = coin_name.upper() + ' CLOSE PRICE'
+    ax1.set_title(ax1_title_str)
 
     ax2.plot(coin_rsi, color = 'orange', linewidth = 2.5)
     ax2.axhline(30, linestyle = '--', linewidth = 1.5, color = 'grey')
     ax2.axhline(70, linestyle = '--', linewidth = 1.5, color = 'grey')
-    ax2.set_title('IBM RELATIVE STRENGTH INDEX')
-
+    ax2_title_str = coin_name.upper() + ' RELATIVE STRENGTH INDEX'
+    ax2.set_title(ax2_title_str)
+    
     st.pyplot(rsi_plot)
 
 def get_indicator_description(indicator_name):
     text = ""
     if indicator_name == "MACD":
-        text = "MACD"
+        text = "MACD: the content"
     elif indicator_name == "RSI":
-        test = "RSI"
+        text = "RSI: the content"
     return text
 
 def indicator():
@@ -131,12 +133,13 @@ def indicator():
     #print("coin_df", coin_df.info())
 
     ######### plot
+    plt.set_loglevel('WARNING')
     if indicator_name == "MACD":
         coin_macd = madf_df(prices, 26, 12, 9)
         madf_plot(prices, coin_macd)
     elif indicator_name == "RSI":
         coin_rsi = get_rsi_df(prices)
-        rsi_plot(prices, coin_rsi)
+        rsi_plot(prices, coin_rsi, coin_id)
 
         #####
 
