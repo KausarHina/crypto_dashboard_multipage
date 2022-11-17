@@ -21,17 +21,17 @@ def coin_choice(coins_list):
 
 # function to add emails and coin choices to df and safe to database    
 def add_email_and_coin(new_email, coin_choices):
-        dict = {'email':new_email,
-        'coin1': coin_choices[0],
-        'coin2': coin_choices[1], 
-        'coin3': coin_choices[2],
-        'coin4': coin_choices[3]}
-
-        email_and_coin_df = pd.DataFrame(dict)
-        database_connection_string = 'sqlite:///'
-        engine = sql.create_engine(database_connection_string, echo=True)
-        email_and_coin_df.to_sql('member_emails_and_coins', engine, index=False, if_exists='append')
-        return email_and_coin_df
+    email = []
+    email_list = email.append(new_email)
+    raw_data = {
+        'email': email_list,
+        'coins' : coin_choices
+     }
+    email_and_coin_df = pd.DataFrame(raw_data, columns=['email','coins'])
+    database_connection_string = 'sqlite:///'
+    engine = sql.create_engine(database_connection_string, echo=True)
+    email_and_coin_df.to_sql('member_emails_and_coins', engine, index=False, if_exists='append')
+    return email_and_coin_df
                 
 #################################################################
 
