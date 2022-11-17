@@ -42,23 +42,23 @@ Before running the application first install the dependencies in conda dev envir
 
 ##  Usage
 
-To use the **crypto_dashboard_multipage** simply clone the repository and run the **main.py** with streamlit:
+To use the **crypto_dashboard_multipage** simply clone the repository and run the **app.py** with streamlit:
 
 ```python
     conda activate dev
 
-    streamlit run main.py
+    streamlit run app/app.py
 
     conda deactivate 
 ```
 
-Here are the three pages :
+Here are the crypto information and trend:
 
-![Coins Page ](Images/Coins.png)
+![Crypto Dashboard Welcome ](app/Images/CryptoDashboard_multi.png)
 
-![Portfolio Page ](Images/Portfolio.png)
+![Bollinger Bands ](app/Images/bollingerBands.png)
 
-![Notification Page ](Images/Notification.png)
+![MACD ](app/Images/MACD.png)
 
 
 ---
@@ -103,5 +103,3 @@ Jodi Artman
 ## License
 
 MIT
-
-#testing branch Edith
