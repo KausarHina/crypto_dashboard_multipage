@@ -42,23 +42,23 @@ Before running the application first install the dependencies in conda dev envir
 
 ##  Usage
 
-To use the **crypto_dashboard_multipage** simply clone the repository and run the **main.py** with streamlit:
+To use the **crypto_dashboard_multipage** simply clone the repository and run the **app.py** with streamlit:
 
 ```python
     conda activate dev
 
-    streamlit run main.py
+    streamlit run app/app.py
 
     conda deactivate 
 ```
 
-Here are the three pages :
+Here are the crypto information and trend:
 
-![Coins Page ](Images/Coins.png)
+![Crypto Dashboard Welcome ](Images/CryptoDashboard_multi.png)
 
-![Portfolio Page ](Images/Portfolio.png)
+![Bollinger Bands ](Images/bollingerBands.png)
 
-![Notification Page ](Images/Notification.png)
+![MACD ](Images/MACD.png)
 
 
 ---
@@ -82,7 +82,7 @@ Here are the three pages :
 ```python
     Kausar - main dashboard page construction with graph of at least 10 coins
 
-    Melissa & Edith - development of the portfolio construction outline of functions
+    Marissa & Edith - development of the portfolio construction outline of functions
 
     Jodi - API data analysis and notifications sent as email alerts 
 ```
@@ -103,5 +103,3 @@ Jodi Artman
 ## License
 
 MIT
-
-#testing branch Edith
