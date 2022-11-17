@@ -22,6 +22,7 @@ import ssl
 
 ###########################################################################
 
+#demo of email sending message to receiver
 def send_email (email_msg):
 
   #email_msg = notification_body(parameters)
