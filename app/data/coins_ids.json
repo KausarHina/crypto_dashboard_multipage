@@ -8540,11 +8540,6 @@
         "name": "BitMEX"
     },
     {
-        "id": "bitmex-token",
-        "symbol": "bmex",
-        "name": "BitMEX"
-    },
-    {
         "id": "bitmic",
         "symbol": "bmic",
         "name": "Bitmic"
@@ -23847,11 +23842,7 @@
     {
         "id": "froggies-token",
         "symbol": "frgst",
-<<<<<<< HEAD
-        "name": "Froggies"
-=======
         "name": "Froggies Token"
->>>>>>> a154f69539865f1b7adc3c30b72a286497ae0ddd
     },
     {
         "id": "frog-inu",
@@ -33092,14 +33083,11 @@
         "id": "learning-cash",
         "symbol": "ead",
         "name": "Learning Cash [OLD]"
-<<<<<<< HEAD
-=======
     },
     {
         "id": "learning-cash-2",
         "symbol": "ead",
         "name": "Learning Cash"
->>>>>>> a154f69539865f1b7adc3c30b72a286497ae0ddd
     },
     {
         "id": "learning-star",
@@ -39527,14 +39515,6 @@
         "name": "MoveRich"
     },
     {
-<<<<<<< HEAD
-        "id": "move-to-gamble",
-        "symbol": "mtg",
-        "name": "Move To Gamble"
-    },
-    {
-=======
->>>>>>> a154f69539865f1b7adc3c30b72a286497ae0ddd
         "id": "movex",
         "symbol": "movx",
         "name": "MoveX"
@@ -55057,11 +55037,7 @@
     {
         "id": "standard-token",
         "symbol": "tst",
-<<<<<<< HEAD
-        "name": "TheStandard.io"
-=======
         "name": "The Standard Token"
->>>>>>> a154f69539865f1b7adc3c30b72a286497ae0ddd
     },
     {
         "id": "stand-cash",
