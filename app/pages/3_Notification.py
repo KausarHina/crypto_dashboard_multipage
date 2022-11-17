@@ -8,7 +8,7 @@ import sqlalchemy as sql
 import streamlit as st
 from bokeh.plotting import figure
 from Modules import data as data_utils
-#from Modules import email_list
+from Modules import email_list as email_utils
 
 
 # def top_ten_list():
@@ -20,7 +20,7 @@ from Modules import data as data_utils
 
 
 def get_coin_data (coin_id):
-    
+      
     start_time = 1641042000 # end time 2022-01-01 1pmGMT
     end_time = 1668208735 #now datetime.now()?
   
@@ -41,10 +41,14 @@ def get_coin_data (coin_id):
     df = df.set_index('timestamp')
     #pd.options.display.float_format = '{:.2f}'.format
     return df
-    
+ #################
+def slice_30day(coin_price_df):
+    coin_price_30day_df = coin_price_df.loc['2022-10-01 17:00:00.000'  : '2022-11-10 16:00:00.000']
+    return coin_price_30day_df
+ # ###################   
 
-def sma_plot(coin_price_df):  #Simple Moving Average
-   sma_df = coin_price_df
+def sma_plot(coin_price_30day_df):  #Simple Moving Average
+   sma_df = coin_price_30day_df
    rolling_sev_average = sma_df.rolling(7).mean()
    sma_df["SMA7"] = rolling_sev_average
    #rolling_twen_average = sma_df.rolling(20).mean()
@@ -89,36 +93,43 @@ def notification ():
     st.markdown('This data table shows the **daily price** of the **coin** you chose in the **sidebar**.')
     st.markdown(f'{coin_id} Price Trend')
     st.line_chart(coin_price_df)
-     
-    
+############
+    coin_price_30day_df = slice_30day(coin_price_df)
+    st.markdown("**Let's take a closer look**")
+    st.markdown(f'**{coin_id} Price Trend Last 30 Days**')
+    st.line_chart(coin_price_30day_df)
+##############    
     #calculates Simple Moving Average (SMA), displays line chart and expains significance
-    sma_df = sma_plot(coin_price_df)
+    sma_df = sma_plot(coin_price_30day_df)
 
     st.markdown('## Simple Moving Average!')
+    st.markdown(f'**{coin_id} SMA over Last 30 Days**')
     st.line_chart(sma_df)
     with st.expander("See details of chart significance"):
         st.write('''The Simple Moving Average (SMA) is calculated by taking the average price during a specified period of time,
         divided by the number of price points during that time.  It gives an idea of how the coin performing through time 'on average',
-        without indicating the extremes of the highs and lows.  
-        As you can see the longer the period of time over which we are averaging, the smoother the line. 
-        Because crypto markets are active 24/7 looking at a shorter timeframe moving average gives you a more accurate 
-        picture of coin performance.
+        without indicating the extremes of the highs and lows.  \n
+        * The longer the period of time over which you are averaging, the smoother the line - 7-days vs 12 days.
+        Because crypto markets are active 24/7 looking at a moving average over a shorter 
+        timeframe cleagives you a more accurate picture of coin performance.
         ''')
     
 
     #calculates Weighted Moving Average (SMA), displays line chart and expains significance
     sma_wma7_df = wma_plot (sma_df)
-    sma_wma7_plot = sma_wma7_df.loc['2022-08-01 17:00:00.000'  : '2022-11-10 16:00:00.000']
-    # st.table(sma_wma7_plot)
+    sma_wma7_plot = sma_wma7_df.loc['2022-09-01 17:00:00.000'  : '2022-11-10 16:00:00.000']
     
 
     st.markdown('## Weighted vs Simple Moving Average!')
+    st.markdown(f'**{coin_id} WMA vs SMA over Last 30 Days**')
     st.line_chart(sma_wma7_plot)
     with st.expander("See details of chart significance"):
         st.write('''The Weighted Moving Average (WMA), also called the Exponential Moving Average, uses the SMA in its 
-        calculations. The difference is that it gives more weight to recent prices in an attempt to make data more responsive 
-        to new information. In the plot above, the green line indicating WMA over 7 days tracks closely to the simple moving average 
-        for the first 2/3 of 90 days, but then responds quicker to the change in price during the last 1/3 of the 90 days.
+        calculations. The difference is, it gives more weight to recent prices in an attempt to make data more responsive 
+        to new information. \n
+        * In the plot above, the light blue line indicating WMA over 7 days tracks closely 
+        to the simple moving average for the first 2/3 of the plot, but then responds quicker 
+        to the change in price during the last 1/3 of the plotted time period.
         ''')
 
     #calculates the bollinger bands, displays line chart and explains significance 
@@ -132,31 +143,38 @@ def notification ():
     new_df = new_df.dropna()
 
     st.markdown('# Bollinger Bands!')
+    st.markdown(f'**{coin_id} Bollinger Bands since Jan 2022**')
     st.line_chart(new_df)
     with st.expander("See details of chart significance"):
         st.write('''
-        The Bolliger Bands are often used as indicators of buy/sell opportunities. This technical indicator allows traders
-        to analyze the volatility of a coin and whether the price is high or low on a relative basis.
-        The top band is typically two standard deviations above the SMA and the bottom band is typically two standard deviations
-        below the SMA. This means 95% of the high/low price variation fits between these two bands. You can see how they 
-        form ribbons around the price.
-        Areas where the blue price line touches or goes below the red, Bollinger low band, are times you would want to consider
-        buying opportunities, because the price is lower than 95% of it's usual performance. 
-        Areas where the blue, price line touches or goes above the green, Bollinger hight band, are times you would want to 
-        consider selling opportunities, because the price is higher than 95% of it's usual performance
+        The Bolliger Bands are often used as indicators of buy/sell opportunities. \n 
+        This technical indicator allows traders to analyze the volatility of a coin and whether the price is high or low on a relative basis. \n
+        The top band is typically two standard deviations above the SMA, \n
+        and the bottom band is typically two standard deviations below the SMA. \n
+        This means 95% of the high/low price variation fits between these two bands. You can see how they form ribbons around the price.
+        * Areas where the red 'price' line touches or goes below the dark blue 'bollinger down' band, are considered buying opportunities,\n
+          because the price is lower than 95% of it's usual performance. 
+        * Areas where the red 'price' line touches or goes above the light blue, 'bollinger up' band, are considered selling opportunities,\n
+          because the price is higher than 95% of it's usual performance
         ''')
     
+    #side bar checkbox widget to verify -get email notifications- calls email list function from Modules
+    #to get email address and top 4 coins of choice
     st.sidebar.write('''\n
     \n
     \n''')
     st.sidebar.markdown("# Stay on top of the Latest in Crypto!")
-    verify = st.sidebar.checkbox("Yes! Keep me up-to-date!\n I want email notifications ")
-    #email_list.verify_notification (coins_list)
+    verify = st.sidebar.checkbox("Yes! I want email notifications!")
+    if verify:
+        email_and_coin_df = email_utils.email_list(coins_list)
+
+    
+
 
 st.set_page_config(page_title="Indicators", page_icon="")
 st.markdown("# Indicator Info")
 st.sidebar.header("Indicator Info")
-st.markdown('***Trading Indicators*:** ')
+st.markdown('***Trading Indicators*** ')
 st.markdown('''*statistics often used in evaluating buy/sell opportunities in cryptocurrency*\n
 -- Price Trend -- Simple Moving Average --  Weighted Moving Average --  Bollinger Bands --''')
 
