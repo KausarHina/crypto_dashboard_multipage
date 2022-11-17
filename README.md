@@ -82,7 +82,7 @@ Here are the crypto information and trend:
 ```python
     Kausar - main dashboard page construction with graph of at least 10 coins
 
-    Melissa & Edith - development of the portfolio construction outline of functions
+    Marissa & Edith - development of the portfolio construction outline of functions
 
     Jodi - API data analysis and notifications sent as email alerts 
 ```
