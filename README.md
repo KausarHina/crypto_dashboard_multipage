@@ -1,12 +1,13 @@
 # crypto_dashboard_multipage
 
 
-This project creates a dashboard for cryptocurrency data. It is meant to be simple and straight-forward for users new to crypto. The data provided gives them basic information to help them evaluate coin performance and develop a starting point for evaluating buy/sell opportunities.
+This project creates a dashboard for cryptocurrency data. It is meant to be simple and straight-forward for users new to crypto investing. The dashboard is easy to navigate and provides the user with a quick look at price data, trade indicators and exchange prices.  It is meant to educate as well as inform, so there are additional tabs for explanation if indicator and exchange significance.
 
 1. Timely data on the top 10 coins is collected and displayed on the front page of the dashboard. 
 2. The Coins page allows the user to choose a top-ten coin and a timeframe. With their parmaters choosen, numerical and graphical price trends are displayed. 
-3. The Indicators page follows the users interest further by allowing them again to choose a coin and see common trade indictor statistics, used to help evaluate the coin's past performance.  These statistics are followed with information expaining their significance to the new crypto enthusiast. 
-4. The XXX page, evaluates coin prices and trading fees across 5 different trading exchanges to find the best price for each coin. The user can elect to receive notifications via email to tell them the "best value" exchange for their top 3 prefered coins. 
+3. The Exchange page, posts coin prices on the top 5 exchanges. With explanations of echange strenghts and the inportance of user choice. 
+4. The Notifications & Indicators pages dives deeper into common trade indictor statistics. These are used to help evaluate the coin's past performance and extrapolate potential future performace.  These statistics are followed with information expaining their significance to the new crypto enthusiast. 
+5. The user can elect to receive notifications via email to tell them the "best value" exchange for their top 4 prefered coins. 
 
 
 
@@ -65,9 +66,15 @@ Here are the three pages :
 ## Questions to Answer
 
 ```python
-    Which cryptocurrency coins would make the best investment in my portfolio?
+    What kind information would a "new-to_crypto" user need to know?
 
-    Has the price changed drastically or buy/sell criteria been met over the past few minutes?
+    Besided price trends, what criteria should we showcase for trading indicators?
+    
+    What metirc would a user need to evaluate buy/sell opportunities?
+    
+    What would a user need to know about exchanges?
+    
+    How do we build a user base?/ connet with users?
 ```
 
 ---
