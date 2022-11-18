@@ -1,28 +1,13 @@
-#import modules
-import streamlit as st
 import pandas as pd
+import streamlit as st
 
-#def portfolio_plot():
-#   st.write("Portfolio !!!")
-#   st.write("Pycoingecko")
-#st.set_page_config(page_title="Portfolio", page_icon="💰")
-#st.markdown("# Portfolio Info")
-#st.sidebar.header("Portfolio Info")
-#st.write(
-#    """Portfolio information and Simulation"""
-#)
-
-
-#portfolio_plot()
-
-#create dataframe
+boolean_filter = [True, True, True, True, False, False, False, False, True, True, True, True]
 
 data = [
   {
     "id": "binance",
     "name": "Binance",
     "year_established": 2017,
-    "country": "Cayman Islands",
     "description": "",
     "url": "https://www.binance.com/",
     "image": "https://assets.coingecko.com/markets/images/52/small/binance.jpg?1519353250",
@@ -1417,332 +1402,28 @@ data = [
     "trust_score_rank": 100,
     "trade_volume_24h_btc": 210.16054923928962,
     "trade_volume_24h_btc_normalized": 210.16054923928962
-  }
+  },
 ]
 
 df = pd.DataFrame(data=data)
-df=df.drop(['has_trading_incentive','description'], axis=1)
-# df['image'] = ["<img src='" + r + '" width ="60" >' for ir, r in df.image.items()]
-df['image'] = df.image.apply(lambda x: "<img src='" + x + '" width ="60" >')
-#df2 = df[['assests', 'html', 'market']].pivot(index='rank', columns="model", values="html")
 
-print(df.head())
-
-st.set_page_config(page_title="Exchanges", page_icon="💵")
+#data.replace("null","NULL")
+# Cache the dataframe so it's only loaded once
+@st.experimental_memo
+def load_data():
+    return pd.DataFrame(
+        {
+            "first column": ["id", "name", "year_established",  "country", "description"],
+            "second column": ["url", "image", "has_trading_incentive"],
+            "third column": ["trust_score","trust_score_rank", "trade_volume_24h_btc","trade_volume_24h_btc_normalized"]
+    }
+)
+#st.dataframe(data.style.highlight_max(axis=0))
+# Boolean to resize the dataframe, stored as a session state variable
 st.checkbox("Use container width", value=False, key="use_container_width")
-st.dataframe(df, use_container_width=st.session_state.use_container_width)
-#st.write(df.to_html(escape=False), unsafe_allow_html=True)
 
+#df = load_data()
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13, tab14, tab15, tab16, tab17, tab18 = st.tabs(["Bybit","mxc", "Crypto.com", "Bitmax","Gate", "Dextrade", "Poloniex", "BingX", "PhemX", "BTCEX", "P2B", "Hotbit", "Coinstore", "Okcoin", "Nominex", "Wootrade", "Emirex", "XT"])
-with tab1: st.write('''Bybit is a cryptocurrency exchange that 
-          offers a professional platform featuring an 
-          ultra-fast matching engine, excellent customer 
-          service and multilingual community support for 
-          crypto traders of all levels. Established in 
-          March 2018, Bybit currently serves more than 10
-          million users and institutions offering access 
-          to over 100 assets and contracts across Spot,
-          Futures and Options, launchpad projects, earn 
-          products, an NFT Marketplace and more. Bybit is
-          a proud partner of Formula One racing team, 
-          Oracle Red Bull Racing, esports teams NAVI, 
-          Astralis, Alliance, Virtus.pro, Made in Brazil 
-          (MIBR), City Esports, and Oracle Red Bull Racing 
-          Esports, and association football (soccer) 
-          teams Borussia Dortmund and Avispa Fukuoka.
-        ''')
-with tab2: st.write('''Established in April 2018, MEXC Global is one
-         of the world's leading digital-asset trading 
-         platforms. The core team comes from world-class 
-         enterprises and financial companies with rich 
-         experience in blockchain and financial industries.
-        ''')
-with tab3: st.write('''Crypto.com Exchange is the best place to trade 
-         crypto, with deep liquidity, low fees and best 
-         execution prices, users can trade major 
-         cryptocurrencies like Bitcoin, Ethereum, and 
-         many more and receive great CRO-powered rewards
-         ''')
-with tab4: st.write('''AscendEX (formerly BitMax) is a leading global 
-                    digital asset financial platform founded by a group 
-                    of Wall Street quantitative trading veterans in 2018,
-                    building on core value of Efficiency, Resilience and
-                    Transparency. Driven by its continuous innovative product 
-                    development and early-mover advantage in strategic 
-                    alignment with the leading projects from DeFi 
-                    ecosystem, AscendEX offers trading services across 
-                    over 200 trading pairs across cash, margin, and 
-                    futures products, in particular margin trading of 
-                    over 50 tokens in cross-asset collateral mode and 
-                    futures trading in both cross-asset and isolated
-                    margin modes.''')
-with tab5: st.write('''Gate was established in 2013, and it is the top 10
-                    exchanges in the world in terms of authentic trading 
-                    volume. It is also the first choice of over 8 million
-                    registered customers, covering 130+ countries
-                    worldwide, as we are providing the most comprehensive
-                    digital asset solutions.
-                    ''')
-with tab6: st.write('''Dex-Trade is a centralized cryptocurrency 
-         exchange founded in 2017 and registered in Belize.
-         This is a modern space for safe and comfortable 
-         trading with minimal commissions. Dex-Trade is a 
-         universal exchange for both beginners and 
-         professional traders. The minimum spread and high 
-         liquidity in order books allow you to trade 
-         efficiently with orders of any volume. Along with 
-         global opportunities, the exchange also provides
-         a demo trading mode for risk-free testing of your
-         trading strategies. Our dedicated support team is
-         online 24/7 to assist you with any questions.
-         ''')
-with tab7: st.write('''Poloniex was founded in January 2014 as a 
-         global cryptocurrency exchange. It provides spot
-         trading, futures trading, staking, and various 
-         services to users in nearly 100 countries and 
-         regions with various languages available. In 2022,
-         Poloniex launched a brand new trading system to 
-         provide global retail and professional users with 
-         higher speed, as well as better stability and 
-         usability.
-         ''')
-with tab8: st.write('''Founded in 2018, BingX is a crypto social 
-         trading exchange that offers spot, derivatives 
-         and copy trading services to more than 100 
-         countries worldwide.BingX prides itself as the
-         people's exchange by unlocking the fast-growing 
-         cryptocurrency market for everyone, connecting 
-         users with experts traders and a platform to 
-         invest in a simple, engaging and transparent way.
-''')
-with tab9: st.write('''Launched in 2019, Phemex is a Singapore-based
-         cryptocurrency and derivatives trading platform 
-         led by former Morgan Stanley executives. Serving
-         around 5 million active users in over 200 
-         countries, Phemex supports 150+ trading pairs 
-         with up to 100x leverage. Fee Structure: 0.1%
-         for both maker and taker. Contract Fee Structure:
-         0.01% for maker and 0.06% for taker. Up to $100 
-         Welcome Bonus for new users. Earn up to 8.5% APY
-         interest income on crypto assets. Free academy 
-         with 450+ carefully curated articles about 
-         crypto & trading.Security: Hierarchical 
-         Deterministic Cold Wallet System with 2-level
-         human scrutiny offline signatures.
-''')
-with tab10: st.write('''BTCEX is a highly extensible digital asset 
-         trading platform, which provides spot, spot 
-         leverage, futures, perpetual contracts, and 
-         USDT-settled options. In addition, it also 
-         supports multi-product portfolio margin models 
-         to improve the utilization of user funds.
-         ''')
-with tab11: st.write('''P2B Cryptocurrency Exchange is one of the 
-         biggest European digital assets exchanges that 
-         has successfully operated for over 5 years. It is
-         now the most trusted platform offering the best
-         go-to-market experience for crypto users and 
-         projects.The platform tops the most trusted 
-         ratings worldwide - CoinMarketCap and CoinGecko -
-         and permanently improves its position. We assure
-         the safety of the trading activities, being 
-         ranked in the TOP-12 in Cer.Live security rate.
-         The users can easily explore the mature crypto 
-         market by investing in a wide variety of liquid
-         tokens, buying cryptocurrencies with bank cards 
-         (via Simplex, Moon Pay, Koinal) and using 
-         attractive discounts or bonuses during 
-         fundraising campaigns. You can also choose the 
-         amount of your commission,  - use the level 
-         commission to raise your account opportunities 
-         and make your trading more profitable. Become a
-         part of the prosperous P2B community - #1 place 
-         to be in crypto. Get your exciting trading 
-         experience with 24/7 support, and gain quickly 
-         and securely.
-''')
-with tab12: st.write('''Founded in 2018 and holding Estonian MTR 
-         licence, American MSB licence, an Australian 
-         AUSTRAC licence and a Canadian MSB licence，
-         HotBit cryptocurrency exchange is known as a 
-         cryptocurrency trading platofrm that continues 
-         to develop and integrate various forms of 
-         businesses such as spot trading, financial 
-         derivatives, cryptocurrency investment and 
-         DAPP into one platform. Currently, Hotbit's 
-         businesses covers more than 210 countries and 
-         areas. Based on its globalized and unified 
-         strategies, HotBit continues to focus on world's
-         emerging markets such as Russia, Turkey and 
-         southeastern Asia markets, and was ranked one
-         of the top 3 most welcomed exchanges by Russian 
-         media in 2019.''')
-with tab13: st.write('''Coinstore was founded in 2020. There are 180 
-         employees worldwide distributed mainly in Asia, 
-         Europe, and the Middle East, serving more than 
-         1,500,000 registered users in 175 countries. 
-         Coinstore provides global users with fast and 
-         smooth cryptocurrency trading services, 
-         derivatives business, OTC services, and NFT 
-         services. Coinstore Labs provides project owners
-         with integrated solutions of 'technology 
-         development, compliance counseling, integrated
-         marketing, community operations, investment 
-         incubation' and much more. Coinstore supports 102 
-         spot pairs and 34 futures pairs. 
-         All features are available on Coinstore's mobile
-         app for iOS and Android, and on desktop.
-''')
-with tab14: st.write('''About OKCoin: OKCoin is one of the largest and 
-                     most trusted fiat-to-crypto trading platforms in the
-                     world. Founded in 2013, OKCoin offers advanced 
-                     features for crypto beginners and high-volume traders
-                     alike, enabling users in 184 countries worldwide to 
-                     exchange US dollars and the euro for Bitcoin, Tethers,
-                     USDK, Bitcoin Cash, Ethereum, Ethereum Classic, 
-                     Decred, EOS, Litecoin, XRP, Cardano, 0x, Stellar, 
-                     Zcash, TRX, and other digital assets. As a registered
-                     Money Services Business (MSB) with the Financial 
-                     Crimes Enforcement Network (FinCEN) and a Virtual 
-                     Financial Asset Act (VFAA) exchange with a 
-                     transitory provision permissioned by the Malta F
-                     inancial Services Authority, OKCoin is on a mission
-                     to make digital assets accessible to the world while
-                     complying with the highest of regulatory standards. 
-                     For more information, visit www.okcoin.com.
-                    ''')
-with tab15: st.write('''New trading platform for convenient trading 
-                     experience with low fees and numerous instruments. 
-                     Absolutely unique affiliate program that allows to 
-                     earn from an infinite number of referral levels, 
-                     compared to 2-3 levels at all other exchanges. A 
-                     unique model for the free 2 phases distribution of 
-                     the native NMX token. Advanced Trading Instruments –
-                     using Stop, Stop Limit, Trailing Stop, Scaled and 
-                     other types of orders brings some kind of trading 
-                     automation without the need to develop a trading bot,
-                     which allows to easily get more profit while trading.
-                     ''')
-with tab16: st.write('''WOO Network is a deep liquidity network connecting 
-                     traders,exchanges, institutions, and DeFi platforms 
-                     with democratized access to the best-in-class 
-                     liquidity and trading execution at lower or zero 
-                     cost. Its flagship, WOO X, is a professional trading
-                     platform featuring customizable modules and lower to
-                     zero fees complete with deep liquidity. WOO Network 
-                     was founded by Kronos Research, a quantitative 
-                     trading firm generating $5-10B in daily volume.
-                     ''')
-with tab17: st.write('''Emirex was launched in 2014 and became a network 
-                     of enterprises using blockchain technology to ease 
-                     asset trading and completely disrupt how people use
-                     crypto. Dubai, UAE, is a dynamic destination for 
-                     Eastern and Western companies, and it's where Emirex
-                     helped develop a crypto culture. Emirex is an 
-                     exchange and marketplace for trading digital assets 
-                     that improve economic freedom by developing 
-                     censorship-resistant public networks. Emirex has 
-                     grown tremendously with its business and is eager 
-                     to develop even more. The EMRX Token Emirex offers 
-                     B2C, B2B, and B2E payments and boasts over 20,000 
-                     active clients and a $10 million monthly income after
-                     growing 40-fold in a year. The exchange has over $25
-                     million in daily volume. EMRX, the exchange's token,
-                     quadrupled last year due to ecosystem integration 
-                     and active use. As the Emirex Ecosystem's native 
-                     token, EMRX is used for listing fees for tokenized 
-                     assets, buy/sell transaction fees, custody and 
-                     servicing fees, and commission and partner incentive
-                     programs. You can also stake EMRX and other tokens 
-                     to earn Ultra High APR on your tokens and withdraw 
-                     anytime. Staking is your gateway to passive crypto 
-                     income! Emirex also launched a tokenization section 
-                     to help revolutionize the real estate market as well.
-                     Quick, Simple, Secure. Emirex is a platform that
-                     simplifies, quickens, and secures digital asset 
-                     trading. Newbies can trade digital assets easily as
-                     Emirex offers non-tech users secure, easy, compliant
-                     digital asset access on a  professional trading 
-                     platform supporting AED, USD, and EUR FIATs. Emirex
-                     can process 1,000,000 orders per second. Experience 
-                     speedy order books, extensive trade history, endless
-                     markets, and market depth, and make spot, margin, 
-                     and futures order types. The Emirex Group offers 
-                     top-tier financial services to bridge the gap 
-                     between the current and future economic systems.
-                    Why You Should Use Emirex?Emirex simplifies crypto 
-                    access and makes its site user-friendly. Emirex's UI
-                    is straightforward. A knowledge base guides newcomers
-                    through exchange operations. Emirex offers deep 
-                    liquidity, hundreds of token pairs, and multiple 
-                    trading orders. You won't get lost with Emirex's 
-                    security, the convenience of access, and helpful 
-                    experts. Receive and send tokens without an 
-                    intermediary. Copy or Social trading lets you 
-                    imitate the top traders' trades, and Emirex's 
-                    referral code earns you up to 7% on your friend's 
-                    and family's transactions. Trade Whenever, Wherever 
-                    Emirex provides the most incredible trading 
-                    experience, allowing you to trade on your terms. 
-                    We want to help you pleasantly attain your financial
-                    goals. Emirex builds crypto economic infrastructure 
-                    based on user experience and accessibility. The 
-                    Emirex team launched the Emirex Android to offer 
-                    all website features in your pocket, including easy
-                    bitcoin buying, selling, and trading and 24/7 support
-                    with one tap. Emirex makes crypto investment so easy 
-                    that you'll want to do it all the time! Sign Up and
-                    Keep Up! Sign up now to benefit from Emirex's low
-                    to 0% fees. Emirex offers Africa, Asia, and 
-                    Europe exposure to digital assets and crypto and 
-                    connects the Middle East with those markets. 
-                    Decentralization and transparency in blockchain can
-                    encourage global value mobility and societal
-                    well-being, which is why emirex is dedicated to the 
-                    digital economy.''')
-with tab18: st.write('''By consistently expanding its ecosystem, XT.COM 
-                     is dedicated to providing users with the most secure,
-                     trusted, and hassle-free digital asset trading 
-                     services. Our exchange is built from a desire to 
-                     give everyone access to digital assets regardless 
-                     where you are. Founded in 2018, XT.COM now serves
-                     more than 6 million registered users, over 500,000+
-                     monthly active users and 40+ million users in the 
-                     ecosystem. Covering a rich variety of  trading 
-                     categories together with a NFT aggregated 
-                     marketplace,  our platform strives to cater to its
-                     large user base by providing a secure, trusted and 
-                     intuitive trading experience. As the world's first
-                     social-infused digital assets trading platform, 
-                     XT.COM also supports social networking platform 
-                     based transactions to make our crypto services more
-                     accessible to users all over the world. Furthermore,
-                     to ensure optimal data integrity and security, 
-                     we see user security as our top priority at XT.COM.
-                     ''')
-st.sidebar.write('''Exchanges is when a party or parties 
-                 gives something of value
-                 and in return that party or parties is
-                 expected to do the same. The same applies
-                 in the wonderful world of Crypto! There
-                 is an extensive selection that exists but,
-                 not all exchanges are the same. For 
-                 example, while all might offer bitcoin 
-                 they cannot gurantee to provide other 
-                 valuable altcoins or tokens that could 
-                 possibly be a great investment. Another 
-                 thing to consider is if the exchange is
-                 certified. What does this mean? The 
-                 crypto exchanges have been assessed by 
-                 certified specialists and had met 3 
-                 points 'penetration test, proof of funds,
-                 and bug bounty.' But, don't fret! 
-                 This application already
-                 does the hard part. This table is a 
-                 variety of exchanges that offers
-                 certified platforms to trade on.
-                 ''')
- #coins_list = top_ten_list()
-coins_list = ["bitcoin","eos","ethereum","litecoin","ripple","cardano","tether","binancecoin","usd-coin","binance-usd","ripple,dogecoin","matic-network","sola-token","staked-ether","shiba-inu,dai","okb,uniswap","stellar","monero","algorand","crypto-com-chain","vechain","decentraland","aave","eos","tezos"]
-coin_id = st.sidebar.selectbox('Select a coin: ', coins_list)
+# Display the dataframe and allow the user to stretch the dataframe
+# across the full width of the container, based on the checkbox value
+st.dataframe(df)
