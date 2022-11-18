@@ -22,7 +22,8 @@ def get_coin_data (coin_id):
     price_list = []
     for row in data['prices'] :
         dt = datetime.datetime.fromtimestamp(row[0]/ 1000)
-        formatted_time = dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        #formatted_time = dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] 
+        formatted_time = dt.strftime('%Y-%m-%d %H')[:-3] #skip the time
         timestamp_list.append(formatted_time)
         price_list.append(row[1])
     raw_data = {'timestamp': timestamp_list, 'price' : price_list}
@@ -48,8 +49,9 @@ def madf_df(price, slow, fast, smooth):# madf_df finding by data
 
 def madf_plot(prices,coin_macd):#prices: dataframe of price, coin_macd dataframe from madf_df function
     macd_fig = plt.figure()
-    ax1 = plt.subplot2grid((8,1), (0,0), rowspan = 5, colspan = 1)
-    ax2 = plt.subplot2grid((8,1), (5,0), rowspan = 3, colspan = 1)
+    #point the plot to macd_fig
+    ax1 = plt.subplot2grid((8,1), (0,0), rowspan = 5, colspan = 1, fig = macd_fig)
+    ax2 = plt.subplot2grid((8,1), (5,0), rowspan = 4, colspan = 1, fig = macd_fig)
 
     ax1.plot(prices)
     ax2.plot(coin_macd['macd'], color = 'grey', linewidth = 1.5, label = 'MACD')
@@ -86,10 +88,10 @@ def get_rsi_df(df, periods = 14, ema = True):
 def rsi_plot(prices, coin_rsi, coin_name):
     rsi_plot = plt.figure()
     #point the plot to rsi_plot
-    ax1 = plt.subplot2grid((10,1), (0,0), rowspan = 5, colspan = 2, fig = rsi_plot)
-    ax2 = plt.subplot2grid((10,1), (6,0), rowspan = 5, colspan = 2, fig = rsi_plot)
+    ax1 = plt.subplot2grid((10,1), (0,0), rowspan = 5, colspan = 1, fig = rsi_plot)
+    ax2 = plt.subplot2grid((10,1), (6,0), rowspan = 5, colspan = 1, fig = rsi_plot)
     
-    ax1.plot(prices)
+    ax1.plot(prices, linewidth = 2.5)
     ax1_title_str = coin_name.upper() + ' CLOSE PRICE'
     ax1.set_title(ax1_title_str)
 
@@ -104,7 +106,7 @@ def rsi_plot(prices, coin_rsi, coin_name):
 def get_indicator_description(indicator_name):
     text = ""
     if indicator_name == "MACD":
-        text = "MACD: the content"
+        text = "Moving average convergence/divergence is an indicator that shows the relationship between two exponential moving averages.The MACD line is calculated by subtracting the 26-period EMA from the 12-period EMA. The Signal line is a 9-period EMA line. MACD signal trigger to buy or sell when the MACD line crosses above the signal line (to buy) or falls below it (to sell)."
     elif indicator_name == "RSI":
         text = "The Relative Strength Index (RSI) monitors changes in recent price to determine if the price is worth buying or not. RSI fluctuates on a scale  between  0-100. When it reaches a peak and turns down, it identifies a top. When it falls and turns up, it identifies a bottom. If the reading is 70 or above the price is ‘overbought’. If the reading is 30 or below the price ‘oversold'."
     return text
@@ -130,19 +132,19 @@ def indicator():
     coin_df = get_coin_data (coin_id)
     coin_price_df = pd.DataFrame(coin_df.price)
     prices = coin_price_df.price
-    #print("coin_df", coin_df)
-    #print("coin_df", coin_df.info())
 
     ######### plot
     plt.set_loglevel('WARNING')
     if indicator_name == "MACD":
         coin_macd = madf_df(prices, 26, 12, 9)
         madf_plot(prices, coin_macd)
+        #macd_text = "Green bar means "
+        #st.markdown(macd_text)
     elif indicator_name == "RSI":
         coin_rsi = get_rsi_df(prices)
         rsi_plot(prices, coin_rsi, coin_id)
-
-    #####
+        
+    ##### intetative plot
 
     #print(coin_rsi.head())
     #rsi_df = pd.DataFrame()
@@ -161,12 +163,6 @@ def indicator():
         x_axis_label='Timestamp',
         y_axis_label='Price')
         
-        p.xaxis.formatter = DatetimeTickFormatter(
-            hours=["%d %B %Y"],
-            days=["%d %B %Y"],
-            months=["%d %B %Y"],
-            years=["%d %B %Y"],
-        )
         default_df = coin_df['price'] 
         p.xaxis.major_label_orientation = 90
         st.line_chart(default_df)
