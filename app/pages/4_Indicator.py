@@ -86,10 +86,10 @@ def get_rsi_df(df, periods = 14, ema = True):
 def rsi_plot(prices, coin_rsi, coin_name):
     rsi_plot = plt.figure()
     #point the plot to rsi_plot
-    ax1 = plt.subplot2grid((10,1), (0,0), rowspan = 4, colspan = 1, fig = rsi_plot)
-    ax2 = plt.subplot2grid((10,1), (5,0), rowspan = 4, colspan = 1, fig = rsi_plot)
+    ax1 = plt.subplot2grid((10,1), (0,0), rowspan = 5, colspan = 2, fig = rsi_plot)
+    ax2 = plt.subplot2grid((10,1), (6,0), rowspan = 5, colspan = 2, fig = rsi_plot)
     
-    ax1.plot(prices, linewidth = 2.5)
+    ax1.plot(prices)
     ax1_title_str = coin_name.upper() + ' CLOSE PRICE'
     ax1.set_title(ax1_title_str)
 
@@ -98,7 +98,7 @@ def rsi_plot(prices, coin_rsi, coin_name):
     ax2.axhline(70, linestyle = '--', linewidth = 1.5, color = 'grey')
     ax2_title_str = coin_name.upper() + ' RELATIVE STRENGTH INDEX'
     ax2.set_title(ax2_title_str)
-    
+    ax2.set_xlabel("Time", rotation=90)
     st.pyplot(rsi_plot)
 
 def get_indicator_description(indicator_name):
@@ -106,7 +106,7 @@ def get_indicator_description(indicator_name):
     if indicator_name == "MACD":
         text = "MACD: the content"
     elif indicator_name == "RSI":
-        text = "RSI: the content"
+        text = "The Relative Strength Index (RSI) monitors changes in recent price to determine if the price is worth buying or not. RSI fluctuates on a scale  between  0-100. When it reaches a peak and turns down, it identifies a top. When it falls and turns up, it identifies a bottom. If the reading is 70 or above the price is ‘overbought’. If the reading is 30 or below the price ‘oversold'."
     return text
 
 def indicator():
@@ -121,7 +121,8 @@ def indicator():
     indicator_name = st.sidebar.selectbox('Select a indicator :', indicator_list)
 
     #page content
-    st.markdown("## Price Trend")
+    pricetrend_title = "## Price Trend with" + " " + indicator_name
+    st.markdown(pricetrend_title)
     info_description = get_indicator_description(indicator_name)
     st.markdown(info_description)
 
@@ -141,19 +142,19 @@ def indicator():
         coin_rsi = get_rsi_df(prices)
         rsi_plot(prices, coin_rsi, coin_id)
 
-        #####
+    #####
 
-        #print(coin_rsi.head())
-        #rsi_df = pd.DataFrame()
-        #rsi_df['prices'] = prices
-        #rsi_df['rsi'] = coin_rsi
-        #rsi_df = rsi_df.dropna()
-        #print(rsi_df.tail())
-        #p = figure(
-        #    x_axis_label='Timestamp',
-        #    y_axis_label='Price')
-        #p.xaxis.major_label_orientation = 90
-        #st.line_chart(rsi_df)
+    #print(coin_rsi.head())
+    #rsi_df = pd.DataFrame()
+    #rsi_df['prices'] = prices
+    #rsi_df['rsi'] = coin_rsi
+    #rsi_df = rsi_df.dropna()
+    #print(rsi_df.tail())
+    #p = figure(
+    #    x_axis_label='Timestamp',
+    #    y_axis_label='Price')
+    #p.xaxis.major_label_orientation = 90
+    #st.line_chart(rsi_df)
 
     else: #without indicator
         p = figure(
