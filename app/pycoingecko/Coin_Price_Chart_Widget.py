@@ -1,4 +1,19 @@
 Bitcoin:
+    @st. cache
+def get all
+Follow link (cmd + click)
+url="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"
+response = rq.get(url)
+data = response.json()
+parent_path = pathlib.Path(__file_).parent.parent.resolve()
+data_path = os.path.join(parent_path,
+"data/coins_ids.json")
+with open (data path,
+'W', encoding='utf-8') as f:
+json.dump(data, f, ensure ascii=false, indent=4)
+global global_coins_ids_df
+global_coins_ids_df = pd.Dataframe(data)
+return
 html = <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
 <coingecko-coin-price-chart-widget  coin-id="bitcoin" currency="usd" height="300" locale="en"></coingecko-coin-price-chart-widget>
 
