@@ -1,4 +1,5 @@
 import datetime
+import time
 import json
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,7 +23,7 @@ from Modules import email_list as email_utils
 def get_coin_data (coin_id):
       
     start_time = 1641042000 # end time 2022-01-01 1pmGMT
-    end_time = 1668208735 #now datetime.now()?
+    end_time = time.time()
   
     url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart/range?vs_currency=usd&from={start_time}&to={end_time}"
     response = requests.get(url)
@@ -43,12 +44,16 @@ def get_coin_data (coin_id):
     return df
  #################
 def slice_30day(coin_price_df):
-    coin_price_30day_df = coin_price_df.loc['2022-10-01 17:00:00.000'  : '2022-11-10 16:00:00.000']
+    current = datetime.datetime.now()
+    time_current = current.strftime('%Y-%m-%d %H:00:00')
+    minus_30day = current + (datetime.timedelta(days=-30))
+    minus_30str = minus_30day.strftime('%Y-%m-%d %H:00:00')
+    coin_price_30day_df = coin_price_df.loc[minus_30str : time_current]
     return coin_price_30day_df
  # ###################   
 
 def sma_plot(coin_price_30day_df):  #Simple Moving Average
-   sma_df = coin_price_30day_df
+   sma_df = coin_price_30day_df.loc[:, :]
    rolling_sev_average = sma_df.rolling(7).mean()
    sma_df["SMA7"] = rolling_sev_average
    #rolling_twen_average = sma_df.rolling(20).mean()
@@ -166,7 +171,7 @@ def notification ():
     st.sidebar.markdown("# Stay on top of the Latest in Crypto!")
     verify = st.sidebar.checkbox("Yes! I want email notifications!")
     if verify:
-        email_and_coin_df = email_utils.email_list(coins_list)
+        email_utils.email_list(coins_list)
 
     
 
